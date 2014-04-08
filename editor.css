@@ -1,7 +1,7 @@
 /*!
  * http://suyati.github.io/line-control
  * LineControl 0.1.0
- * Copyright (C) 2013, Suyati Technologies
+ * Copyright (C) 2014, Suyati Technologies
  * This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 You should have received a copy of the GNU General Public License along with this library; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
@@ -13,14 +13,14 @@ You should have received a copy of the GNU General Public License along with thi
 
 
 .jumbotron {
-	 background-color: #67A754;
-	background-image: url(images/radial_bg.png);
-	background-position: center center;
-	background-repeat: no-repeat; 
-	background: -webkit-gradient(radial, center center, 0, center center, 460, from(#B3ECFF), to(#7EDEFF)); /* Safari 4-5, Chrome 1-9 */ /* Can't specify a percentage size? Laaaaaame. */
-	background: -webkit-radial-gradient(circle, #B3ECFF, #7EDEFF); /* Safari 5.1+, Chrome 10+ */
-	background: -moz-radial-gradient(circle, #B3ECFF, #7EDEFF); /* Firefox 3.6+ */
-	background: -ms-radial-gradient(circle, #B3ECFF, #7EDEFF); /* IE 10 */
+   background-color: #67A754;
+  background-image: url(images/radial_bg.png);
+  background-position: center center;
+  background-repeat: no-repeat; 
+  background: -webkit-gradient(radial, center center, 0, center center, 460, from(#B3ECFF), to(#7EDEFF)); /* Safari 4-5, Chrome 1-9 */ /* Can't specify a percentage size? Laaaaaame. */
+  background: -webkit-radial-gradient(circle, #B3ECFF, #7EDEFF); /* Safari 5.1+, Chrome 10+ */
+  background: -moz-radial-gradient(circle, #B3ECFF, #7EDEFF); /* Firefox 3.6+ */
+  background: -ms-radial-gradient(circle, #B3ECFF, #7EDEFF); /* IE 10 */
     box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2) inset, 0 -3px 7px rgba(0, 0, 0, 0.2) inset;
     color: #FFFFFF;
     padding: 40px 0;
@@ -30,11 +30,11 @@ You should have received a copy of the GNU General Public License along with thi
 .jumbotron h1{font-family: 'Roboto', sans-serif!important; font-size:45px;font-weight:300; border-bottom:1px solid rgba(255,255,255,0.4);padding-bottom:20px; }
 .jumbotron h1 span{color:rgba(0,0,0,0.4); }
 .jumbotron p {
-	font-family: 'Roboto', sans-serif!important;
+  font-family: 'Roboto', sans-serif!important;
     font-size: 30px;
     font-weight: 300;
     line-height: 1.25;
-	color:#444;
+  color:#444;
 }
 
 .jumbotron .container {
@@ -67,12 +67,12 @@ h2.demo-text{font-family: 'Roboto', sans-serif!important; font-size:45px; font-w
 /* Editor Styles */
 
 .Editor-container{
-	margin-top:10px;
-	font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
-	}
-	
+  margin-top:10px;
+  font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  
 #menuBarDiv, #statusbar{
-	 background-color: #f5f5f5;
+   background-color: #f5f5f5;
   *background-color: #e6e6e6;
   background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
@@ -88,38 +88,40 @@ h2.demo-text{font-family: 'Roboto', sans-serif!important; font-size:45px; font-w
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
   *zoom: 1;
-		  }
-	
+      }
+  
 #menuBarDiv{
-	border-radius:3px 3px 0 0;
-	border-bottom:none;
-	min-height:25px;
-	padding:5px 0;
-	}
-#menuBarDiv div:first-child{margin-left:5px;}	
+  border-radius:3px 3px 0 0;
+  border-bottom:none;
+  min-height:25px;
+  padding:5px 0;
+  }
+#menuBarDiv div:first-child{margin-left:5px;} 
 #menuBarDiv .dropdown{float:left;}
 #menuBarDiv .dropdown-toggle{font-size:12px; padding-top:1px; padding-bottom:2px;}
 #menuBarDiv .dropdown-toggle .caret{margin-left:5px; border-top-color:#999;}
 #menuBarDiv a.btn{position:relative; margin-bottom:3px;}
 #paletteCntr{}
 select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input{height:auto;}
-	
+  
 #statusbar{
-	min-height:30px;
-	border-radius:0 0 3px  3px;
-	border-top:none;
-	line-height:30px;
-	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
-	}
-	
+  min-height:30px;
+  border-radius:0 0 3px  3px;
+  border-top:none;
+  line-height:30px;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+  }
+  
 #statusbar .label{float:right; margin:6px 10px 0 0; background:#BBB;}
-	
-.Editor-editor{	
-  width:100%;
+  
+.Editor-editor{ 
+  width:98%;
   height:300px;
-	border:1px solid #EEE;
-	border-radius:0;
-	}
+  padding:1%;  
+  border:1px solid #EEE;
+  border-radius:0;
+  word-wrap: break-word;
+  }
 
 
 #paletteCntr ul
@@ -127,7 +129,7 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
     width: 145px;
     float: left;
     z-index: 999;
-	margin:0 10px;
+  margin:0 10px;
 }
 #paletteCntr li
 {
@@ -146,9 +148,9 @@ div.activeColour
     position: absolute;
     display: inline;
     left: 0;
-  	top:30px;
-  	background:#E8E8E8;
-  	padding-bottom:10px;
+    top:30px;
+    background:#E8E8E8;
+    padding-bottom:10px;
     z-index:10000;
           
 }
@@ -166,9 +168,9 @@ div.activeColour
     background-color:#E8E8E8!important;
     display:inline;
     position:absolute;
-	width:180px;
-	top:30px;
-	left:0;
+  width:180px;
+  top:30px;
+  left:0;
 
 }
 .specialCntr ul{float:left; margin:10px; white-space:normal;}
@@ -184,3 +186,6 @@ pre {
 
 
 .on{display:block; position:relative;}
+.fullscreen{position:fixed; background:#FFF; width:100%; height:100%; top:0; left:0; z-index:1000; margin:0;}
+.fullscreen #statusbar{position:fixed; bottom:0; border-top:1px solid #DDD;}
+.fullscreen #contentarea{border:none;}
