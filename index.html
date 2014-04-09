@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Line-control by suyati</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Line-control</h1>
+        <h2>A Light Weight HTML5 Text Editor designed as  a JQuery Plugin</h2>
+        <a href="https://github.com/suyati/line-control" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h3>
+<a name="linecontrol-editor" class="anchor" href="#linecontrol-editor"><span class="octicon octicon-link"></span></a>LineControl Editor</h3>
+
+<p>LineControl allows you to add a beautiful, responsive and fast online Text Editor to your web application/site. LineControl is designed to work with Twitter Bootstrap and as a Jquery Plugin. To add the plugin to your project, just include the JS and CSS files to your HTML template:</p>
+
+<pre><code>&lt;script src="editor.js"&gt;&lt;/script&gt;
+&lt;link type="text/css" href="editor.css" rel="stylesheet"/&gt;
+</code></pre>
+
+<p>and then in your script section just call:</p>
+
+<pre><code>var editor = $("#placeHolder").Editor();
+</code></pre>
+
+<h3>
+<a name="dependencies" class="anchor" href="#dependencies"><span class="octicon octicon-link"></span></a>Dependencies</h3>
+
+<p>LineControl is built as a JQuery Plugin and supports Jquery 1.9.1. ST_Editor is also built for responsiveness and uses Twitter Bootstrap and Font-Awesome icons to render its Interface. The following is required for your ST_Editor to function perfectly</p>
+
+<ul>
+<li>Jquery (1.9.1)</li>
+<li>Twitter Bootstrap</li>
+<li>Font-Awesome</li>
+</ul><h3>
+<a name="browser-support" class="anchor" href="#browser-support"><span class="octicon octicon-link"></span></a>Browser Support</h3>
+
+<p>LineControl uses HTML5 for some of its functions to deliver a faster user experience. LineControl works well for most Modern browsers:</p>
+
+<ul>
+<li>Google Chrome</li>
+<li>Mozilla Firefox</li>
+<li>Safari</li>
+<li>Internet Explorer (&gt;=10)</li>
+</ul><h3>
+<a name="adding-custom-options" class="anchor" href="#adding-custom-options"><span class="octicon octicon-link"></span></a>Adding Custom Options</h3>
+
+<p>If you want to add custom Options to the editor just do:</p>
+
+<pre><code>editor('createMenuItem', {"text": "TouchGlasses", //Text replaces icon if its not available
+                          "icon":"icon icon-glass", //This is a Font-Awesome Icon 
+                          "tooltip": "Touch Glasses",
+                          "custom": function(button, parameters){ 
+                                        //Your Custom Function.
+                                      alert("Cheers!!!");
+                                    },
+                          "params": {'option1':"value1"} //Any custom parameters you want to pass
+                                                           //to your custom function.
+ });
+</code></pre>
+
+<p>Read more about extending LineControl <a href="https://github.com/suyati/line-control/wiki">here</a></p>
+
+<h3>
+<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+
+<p>LineControl is developed by <a href="http://suyati.com/products">Suyati Technologies</a>.
+It is written and maintained by their Open Source Development Team:</p>
+
+<ul>
+<li>Krishnanunni P N (<a href="https://github.com/kpnunni" class="user-mention">@kpnunni</a>)</li>
+<li>Arun V B (<a href="https://github.com/abalakrishnan" class="user-mention">@abalakrishnan</a>)</li>
+<li>Naveen Bos TM (<a href="https://github.com/naveenbos" class="user-mention">@naveenbos</a>)</li>
+<li>Sujith Panikkam (<a href="https://github.com/spanikkam" class="user-mention">@spanikkam</a>)</li>
+</ul><h3>
+<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+
+<p>Have Suggestions? Want to give us something to do? Contact us at : <strong><a href="mailto:support@suyati.com">support@suyati.com</a></strong></p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/suyati/line-control/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/suyati/line-control/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/suyati/line-control"></a> is maintained by <a href="https://github.com/suyati">suyati</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
