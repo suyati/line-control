@@ -341,7 +341,7 @@ You should have received a copy of the GNU General Public License along with thi
 			for(var i=1; i<=tblRows; i++){
 				var tblRow = $('<tr/>');
 			 	for(var j=1; j<=tblColumns; j++){
-			 		var tblColumn = $('<td/>').html('');
+			 		var tblColumn = $('<td/>').html('&nbsp;');
 			 		tblColumn.appendTo(tblRow);
 			 	}				
 				tblRow.appendTo(tableElement);
