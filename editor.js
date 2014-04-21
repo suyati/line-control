@@ -1,6 +1,6 @@
 /*!
  * http://suyati.github.io/line-control
- * LineControl 0.1.0
+ * LineControl 1.0.1
  * Copyright (C) 2014, Suyati Technologies
  * This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
@@ -531,7 +531,7 @@ You should have received a copy of the GNU General Public License along with thi
 											"custom":null },
 
 							  'color'	: { "text":"A",
-											"icon": "icon icon-font", 
+											"icon": "fa fa-font", 
 											"tooltip": "Text/Background Color",
 											"commandname":null,
 											"custom":function(button){
@@ -585,86 +585,86 @@ You should have received a copy of the GNU General Public License along with thi
 												}},
 							
 							  'bold'	: { "text": "B", 
-											"icon": "icon icon-bold", 
+											"icon": "fa fa-bold", 
 											"tooltip": "Bold", 
 											"commandname":"bold", 
 											"custom":null },
 
 						      'italics'	: { "text":"I", 
-											"icon":"icon icon-italic", 
+											"icon":"fa fa-italic", 
 											"tooltip":"Italics", 
 											"commandname":"italic",
 											"custom":null },
 
 						     'underline': { "text":"U", 
-											"icon":"icon icon-underline", 
+											"icon":"fa fa-underline", 
 											"tooltip":"Underline", 
 											"commandname":"underline",
 											"custom":null },
 											
 						     'strikeout': { "text": "Strikeout", 
-											"icon":"icon-strikethrough", 
+											"icon":"fa fa-strikethrough", 
 											"tooltip": "Strike Through", 
 											"commandname":"strikeThrough", 
 											"custom":null },
 
 						     'ol'		: { "text": "N", 
-											"icon": "icon icon-list-ol", 
+											"icon": "fa fa-list-ol", 
 											"tooltip": "Insert/Remove Numbered List", 
 											"commandname":"insertorderedlist", 
 											"custom":null },
 
 						     'ul'		: { "text": "Bullet", 
-											"icon": "icon icon-list-ul", 
+											"icon": "fa fa-list-ul", 
 											"tooltip": "Insert/Remove Bulleted List", 
 											"commandname":"insertunorderedlist", 
 											"custom":null },
 
 						     'undo'		: { "text": "undo", 
-											"icon": "icon icon-undo", 
+											"icon": "fa fa-undo", 
 											"tooltip": "Undo", 
 											"commandname":"undo", 
 											"custom":null },
 
 						     'redo'		: { "text": "redo", 
-											"icon": "icon icon-repeat", 
+											"icon": "fa fa-repeat", 
 											"tooltip": "Redo", 
 											"commandname":"redo", 
 											"custom":null },
 
 						     'l_align'	: { "text": "leftalign", 
-											"icon": "icon icon-align-left", 
+											"icon": "fa fa-align-left", 
 											"tooltip": "Align Left", 
 											"commandname":"justifyleft", 
 											"custom":null },
 
 						     'r_align'	: { "text": "rightalign", 
-											"icon": "icon icon-align-right", 
+											"icon": "fa fa-align-right", 
 											"tooltip": "Align Right", 
 											"commandname":"justifyright", 
 											"custom":null },
 
 						     'c_align'	: { "text": "centeralign", 
-											"icon": "icon icon-align-center", 
+											"icon": "fa fa-align-center", 
 											"tooltip": "Align Center", 
 											"commandname":"justifycenter", 
 											"custom":null },
 
 						     'justify'	: { "text": "justify", 
-											"icon": "icon-align-justify", 
+											"icon": "fa fa-align-justify", 
 											"tooltip": "Justify", 
 											"commandname":"justifyfull", 
 											"custom":null },
 
 							  'unlink'	: { "text": "Unlink", 
-											"icon": "icon-unlink", 
+											"icon": "fa fa-unlink", 
 											"tooltip": "Unlink", 
 											"commandname":"unlink", 
 											"custom":null },
 
 						   'insert_link': { "modal": true,
 						   					"modalId": "InsertLink", 
-											"icon":"icon icon-link", 
+											"icon":"fa fa-link", 
 											"tooltip": "Insert Link", 
 											"modalHeader": "Insert Hyperlink",
 											"modalBody": $('<div/>',{   class:"row-fluid"
@@ -721,7 +721,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 						   'insert_img'	: { "modal": true,
 						   					"modalId": "InsertImage", 
-											"icon":"icon icon-picture", 
+											"icon":"fa fa-picture-o", 
 											"tooltip": "Insert Image", 
 											"modalHeader": "Insert Image",
 											"modalBody": methods.imageWidget.apply(this),
@@ -751,7 +751,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 						'insert_table'	: { "modal": true,
 					   						"modalId": "InsertTable", 
-											"icon":"icon-table", 
+											"icon":"fa fa-table", 
 											"tooltip": "Insert Table", 
 											"modalHeader": "Insert Table",
 											"modalBody":methods.tableWidget.apply(this),
@@ -821,13 +821,13 @@ You should have received a copy of the GNU General Public License along with thi
 											}},
 
 						   'hr_line'	: { "text": "HR", 
-											"icon":"icon icon-minus", 
+											"icon":"fa fa-minus", 
 											"tooltip": "Horizontal Rule", 
 											"commandname":"insertHorizontalRule", 
 											"custom":null },
 
 						   'block_quote': { "text": "Block Quote", 
-											"icon":"icon-quote-right", 
+											"icon":"fa fa-quote-right", 
 											"tooltip": "Block Quote", 
 											"commandname":null, 
 											"custom":function(){ 
@@ -841,19 +841,19 @@ You should have received a copy of the GNU General Public License along with thi
 											}},						   
 
 						   'indent'		: { "text": "Indent", 
-											"icon":"icon-indent-right", 
+											"icon":"fa fa-indent", 
 											"tooltip": "Increase Indent", 
 											"commandname":"indent", 
 											"custom":null },
 
 						   'outdent'	: { "text": "Outdent", 
-											"icon":"icon-indent-left", 
+											"icon":"fa fa-outdent", 
 											"tooltip": "Decrease Indent", 
 											"commandname":"outdent", 
 											"custom":null },
 
 							'print'		: { "text": "Print", 
-											"icon":"icon-print", 
+											"icon":"fa fa-print", 
 											"tooltip": "Print", 
 											"commandname":null, 
 											"custom":function(){
@@ -865,13 +865,13 @@ You should have received a copy of the GNU General Public License along with thi
 											}},
 
 							'rm_format'	: { "text": "Remove format", 
-											"icon":"icon-eraser", 
+											"icon":"fa fa-eraser", 
 											"tooltip": "Remove Formatting", 
 											"commandname":"removeformat", 
 											"custom":null },
 
 							'select_all': { "text": "Select all", 
-											"icon":"icon-file-text", 
+											"icon":"fa fa-file-text", 
 											"tooltip": "Select All", 
 											"commandname":null, 
 											"custom":function(){ 
@@ -879,7 +879,7 @@ You should have received a copy of the GNU General Public License along with thi
 											}},
 
 							'togglescreen':{ "text": "Toggle Screen",
-											 "icon": "icon-fullscreen",
+											 "icon": "fa fa-arrows-alt",
 											 "tooltip": "Toggle Screen",
 											 "commandname":null,
 											 "custom":function(button, parameters){
@@ -896,7 +896,7 @@ You should have received a copy of the GNU General Public License along with thi
 						                    }},
 
 							'splchars'	: { "text": "S", 
-											"icon": "icon icon-asterisk", 
+											"icon": "fa fa-asterisk", 
 											"tooltip": "Insert Special Character", 
 											"commandname":null, 
 											"custom":function(button){
@@ -934,7 +934,7 @@ You should have received a copy of the GNU General Public License along with thi
 											}},
 
 							'source'	: { "text": "Source", 
-											"icon":"icon-code", 
+											"icon":"fa fa-code", 
 											"tooltip": "Source", 
 											"commandname":null, 
 											"custom":function(button, params){ methods.getSource.apply(this, [button, params]) } },
@@ -1059,14 +1059,14 @@ You should have received a copy of the GNU General Public License along with thi
 		        if (!target.parents().andSelf().is('#context-menu')) { // Clicked outside
 		            $('#context-menu').remove();
 		        } 
-		        if (!target.parents().andSelf().is('#specialchar') && (target.closest('a').html()!='<i class="icon icon-asterisk"></i>')) { //Clicked outside
+		        if (!target.parents().andSelf().is('#specialchar') && (target.closest('a').html()!='<i class="fa fa-asterisk"></i>')) { //Clicked outside
 		        	if($("#specialchar").is(':visible'))
 		            {
 		            	$('#contentarea').data("splcharsBtn", null);
 		            	$('#specialchar').remove();		           		
 		           	}
 		        }
-		        if (!target.parents().andSelf().is('#paletteCntr') && (target.closest('a').html()!='<i class="icon icon-font"></i>')) { //Clicked outside
+		        if (!target.parents().andSelf().is('#paletteCntr') && (target.closest('a').html()!='<i class="fa fa-font"></i>')) { //Clicked outside
 		        	if($("#paletteCntr").is(':visible'))
 		            {
 		            	$('#contentarea').data("colorBtn", null);

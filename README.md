@@ -27,7 +27,7 @@ LineControl uses HTML5 for some of its functions to deliver a faster user experi
 If you want to add custom Options to the editor just do:
 ```
 editor('createMenuItem', {"text": "TouchGlasses", //Text replaces icon if its not available
-                          "icon":"icon icon-glass", //This is a Font-Awesome Icon 
+                          "icon":"fa fa-glass", //This is a Font-Awesome Icon 
                           "tooltip": "Touch Glasses",
                           "custom": function(button, parameters){ 
                                         //Your Custom Function.
