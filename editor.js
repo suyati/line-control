@@ -1535,6 +1535,11 @@ You should have received a copy of the GNU General Public License along with thi
 			return src;
 		},
 
+		setText: function(newText){
+			//Function to set the source code
+			$('#contentarea').html(newText);
+		},
+
 		setStyleWithCSS:function(){
 			if(navigator.userAgent.match(/MSIE/i)){	//for IE10
 				try {
