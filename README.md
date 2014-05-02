@@ -11,7 +11,7 @@ var editor = $("#placeHolder").Editor();
 ```
 
 ### Dependencies
-LineControl is built as a JQuery Plugin and supports Jquery 2.1.0. ST_Editor is also built for responsiveness and uses Twitter Bootstrap and Font-Awesome icons to render its Interface. The following is required for your ST_Editor to function perfectly
+LineControl is built as a JQuery Plugin and supports Jquery 2.1.0. LineControl is also built for responsiveness and uses Twitter Bootstrap and Font-Awesome icons to render its Interface. The following is required for your LineControl to function perfectly
 * Jquery (2.1.0)
 * Twitter Bootstrap (3.1.1)
 * Font-Awesome (4.0.3)
