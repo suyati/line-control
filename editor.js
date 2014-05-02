@@ -1,6 +1,6 @@
 /*!
  * http://suyati.github.io/line-control
- * LineControl 1.0.1
+ * LineControl 1.1.0
  * Copyright (C) 2014, Suyati Technologies
  * This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
@@ -120,7 +120,7 @@ You should have received a copy of the GNU General Public License along with thi
 		imageWidget: function(){
 			//Class for Widget Handling the upload of Files
 			var row = $('<div/>',{
-				"class":"row-fluid"
+				"class":"row"
 			}).append($('<div/>',{
 				id :"imgErrMsg"
 			}));
@@ -157,7 +157,7 @@ You should have received a copy of the GNU General Public License along with thi
 					reader.onload = (function(imageFile){
 						return function(e){
 							//Render Thumnails
-							var li = $('<li/>',{class:"span6"});
+							var li = $('<li/>',{class:"col-xs-12 col-sm-6 col-md-3 col-lg-3"});
 							var a = $('<a/>',{
 								href:"javascript:void(0)",
 								class:"thumbnail"
@@ -176,6 +176,7 @@ You should have received a copy of the GNU General Public License along with thi
 			}
 			var chooseFromLocal = $('<input/>',{
 				type: "file",
+				class:"inline-form-control",
 				multiple: "multiple"
 			});
 			chooseFromLocal.on('change', handleFileSelect);			
@@ -184,15 +185,15 @@ You should have received a copy of the GNU General Public License along with thi
 				id: "imageFromLinkBar",
 				class: "tab-pane"
 			});		
-			var getImageURL = $("<div/>", {class:"input-append"});
+			var getImageURL = $("<div/>", {class:"input-group"});
 			var imageURL = $('<input/>',{
 				type: "url",
-				class:'span12',
+				class:'form-control',
 				id:"imageURL",
 				placeholder: "Enter URL"
 			}).appendTo(getImageURL);
 			var getURL = $("<button/>",{
-				class:"btn",
+				class:"btn btn-success",
 				type:"button"
 			}).html("Go!").click(function(){
 				var url = $('#imageURL').val();
@@ -200,7 +201,7 @@ You should have received a copy of the GNU General Public License along with thi
 					methods.showMessage.apply(this,["imgErrMsg","Please enter image url"]);
 					return false;
 				}
-				var li = $('<li/>',{class:"span6"});
+				var li = $('<li/>',{class:"span6 col-xs-12 col-sm-6 col-md-3 col-lg-3"});
 				var a = $('<a/>',{
 					href:"javascript:void(0)",
 					class:"thumbnail"
@@ -215,14 +216,14 @@ You should have received a copy of the GNU General Public License along with thi
 				});
 				li.append(a).appendTo($('#imageList'));
 			});
-			}).appendTo(getImageURL);
+			}).appendTo($("<span/>", {class:"input-group-btn form-control-button-right"}).appendTo(getImageURL));
 
 			imageFromLinkBar.append(getImageURL);
 			tabContent.append(uploadImageBar).append(imageFromLinkBar);
 			container.append(navTabs).append(tabContent);						
 
-			var imageListContainer = $("<div/>",{'class': 'span4'});
-			var imageList = $('<ul/>',{"class":"thumbnails",
+			var imageListContainer = $("<div/>",{'class': 'col-xs-12 col-sm-12 col-md-12 col-lg-12'});
+			var imageList = $('<ul/>',{"class":"thumbnails padding-top list-unstyled",
 										"id": 'imageList'
 			}).appendTo(imageListContainer);
 			row.append(container).append(imageListContainer);
@@ -242,39 +243,39 @@ You should have received a copy of the GNU General Public License along with thi
 				})).append($('<form/>',{ //Form 
 					id:"tblForm"+idExtn 
 					}).append($('<div/>',{ //Inner Container Div
-						class:"row-fluid" 
+						class:"row" 
 						}).append($('<div/>',{ //Left input Container Div
 							id :"tblInputsLeft"+idExtn,
-							class:"span6"
+							class:"col-xs-12 col-sm-6 col-md-6 col-lg-6"
 							}).append($('<label/>',{ for:"tblRows"+idExtn,	text:"Rows"}
 							)).append($('<input/>',{
 								id:"tblRows"+idExtn,
 								type:"text",
-								class:"input-small",
+								class:"form-control form-control-width",
 								value:2
 							})).append($('<label/>',{ for:"tblColumns"+idExtn,	text:"Columns"}
 							)).append($('<input/>',{
 								id:"tblColumns"+idExtn,
 								type:"text",
-							 	class:"input-small",
+							 	class:"form-control form-control-width",
 							 	value:2
 							})).append($('<label/>',{ for:"tblWidth"+idExtn, text:"Width"}
 							)).append($('<input/>',{
 								id:"tblWidth"+idExtn,
 								type:"text",
-								class:"input-small",
+								class:"form-control form-control-width",
 								value:400
 							})).append($('<label/>',{ for:"tblHeight"+idExtn, text:"Height"}
 							)).append($('<input/>',{ 
 								id:"tblHeight"+idExtn,
 								type:"text",
-								class:"input-small", 
+								class:"form-control form-control-width", 
 							}))
 						).append($('<div/>',{ //Right input Container Div
 							id :"tblInputsRight"+idExtn,
-							class:"span6"
+							class:"col-xs-12 col-sm-6 col-md-6 col-lg-6"
 							}).append($('<label/>',{ for:"tblAlign"+idExtn, text:"Alignment"}
-							)).append($('<select/>',{ id:"tblAlign"+idExtn, class:"input-small"}
+							)).append($('<select/>',{ id:"tblAlign"+idExtn, class:"form-control form-control-width"}
 								).append($('<option/>',{ text:"Choose", value:""}
 								)).append($('<option/>',{ text:"Left", value:"left"}
 								)).append($('<option/>',{ text:"Center", value:"center"}
@@ -283,19 +284,19 @@ You should have received a copy of the GNU General Public License along with thi
 							)).append($('<input/>',{ 
 								id:"tblBorder"+idExtn,
 								type:"text",
-								class:"input-small",
+								class:"form-control form-control-width",
 								value:1
 							})).append($('<label/>',{ for:"tblCellspacing"+idExtn,	text:"Cell spacing"}
 							)).append($('<input/>',{
 								id:"tblCellspacing"+idExtn,
 								type:"text", 
-								class:"input-small",
+								class:"form-control form-control-width",
 								value:1
 							})).append($('<label/>',{ for:"tblCellpadding"+idExtn,	text:"Cell padding"}
 							)).append($('<input/>',{
 								id:"tblCellpadding"+idExtn,
 								type:"text",
-								class:"input-small",
+								class:"form-control form-control-width",
 								value:1
 							}))
 						)
@@ -313,9 +314,11 @@ You should have received a copy of the GNU General Public License along with thi
 				})).append($('<input/>',{ 
 						id:"imgAlt",
 						type:"text",
+						class:"form-control form-control-link ",
 						placeholder:"Alt Text",
 					})).append($('<input/>',{
 						id:"imgTarget",
+						class:"form-control form-control-link ",
 						type:"text",
 						placeholder:"Link Target"
 					})).append($('<input/>',{
@@ -667,17 +670,19 @@ You should have received a copy of the GNU General Public License along with thi
 											"icon":"fa fa-link", 
 											"tooltip": "Insert Link", 
 											"modalHeader": "Insert Hyperlink",
-											"modalBody": $('<div/>',{   class:"row-fluid"
+											"modalBody": $('<div/>',{   class:"form-group"
 																	}).append($('<div/>',{
 																		id :"errMsg"
 																	})).append($('<input/>',{
 																		type:"text",
 																		id:"inputText",
+																		class:"form-control form-control-link ",
 																		placeholder:"Text to Display",
 																	})).append($('<input/>',{
 																		type:"text",
 																		id:"inputUrl",
 																		required:true,
+																		class:"form-control form-control-link",
 																		placeholder:"Enter URL"
 																	})),
 											"beforeLoad":function(){ 
@@ -989,7 +994,6 @@ You should have received a copy of the GNU General Public License along with thi
 				'status_bar':true,
 				'font_size':fontsizes,
 				'color':colors,
-				'bg_color':false,
 				'splchars':specialchars,
 				'insert_table':true,
 				'select_all':true,
@@ -1050,10 +1054,7 @@ You should have received a copy of the GNU General Public License along with thi
 	       		}	       		
 	       	}
 
-	       	//For contextmenu
-	       	/*$('html').click(function(e) {
-				$('#context-menu').remove();				
-			});*/
+	       	//For contextmenu	       	
 		    $(document.body).mousedown(function(event) {
 		        var target = $(event.target);
 		        if (!target.parents().andSelf().is('#context-menu')) { // Clicked outside
@@ -1261,7 +1262,7 @@ You should have received a copy of the GNU General Public License along with thi
 													var columns = $(e.target).closest('table').find('tr')[0].cells.length;
 													var newTblRow = $('<tr/>');
 													for(var j=1; j<=columns; j++){
-												 		var newTblCol = $('<td/>').html('');
+												 		var newTblCol = $('<td/>').html('&nbsp;');
 												 		newTblCol.appendTo(newTblRow);
 												 	}
 											 		newTblRow.appendTo($(e.target).closest('table'));
@@ -1312,44 +1313,50 @@ You should have received a copy of the GNU General Public License along with thi
 			//Create a Modal for the button.		
 			var modalTrigger = $('<a/>',{	href:"#"+modalId,
 											role:"button",
-											class:"btn",
+											class:"btn btn-default",
 											"data-toggle":"modal"
 			});
-			var modalElement = $('<div/>',{	id: modalId,
-											class: "modal hide fade",
-										   	tabindex: "-1",
-										   	role: "dialog",
-										   	"aria-labelledby":"h3_"+modalId,
-										   	"aria-hidden":"true"
-										}).append($('<div>',{
-												class:"modal-header"
-											}).append($('<button/>',{
-																	type:"button",
-																	class:"close",
-																	"data-dismiss":"modal",
-																	"aria-hidden":"true"
-															}).html('x')
-											).append($('<h3/>',{
-																	id:"h3_"+modalId
-											}).html(modalHeader))
-										).append($('<div>',{
-												class:"modal-body"
-											}).append(modalBody)
-										).append($('<div>',{
-												class:"modal-footer"
-											}).append($('<button/>',{
-																	type:"button",
-																	class:"btn",
-																	"data-dismiss":"modal",
-																	"aria-hidden":"true"
-															}).html('Cancel')
-											).append($('<button/>',{
-																	type:"button",
-																	class:"btn btn-success",
-															}).html('Done').mousedown(function(e){
-																e.preventDefault();
-															}).click(function(obj){return function(){onSave.apply(obj)}}(this)))
-										);			
+			var modalElement = $('<div/>',{ id: modalId,
+								           class: "modal fade",
+								              tabindex: "-1",
+								              role: "dialog",
+								              "aria-labelledby":"h3_"+modalId,
+								              "aria-hidden":"true"
+								          }).append($('<div>',{
+								            	class:"modal-dialog"
+								         		}).append($('<div>',{
+							            			class:"modal-content"
+									         		}).append($('<div>',{
+									           			class:"modal-header"
+									           			}).append($('<button/>',{
+										                	type:"button",
+										                	class:"close",
+										                	"data-dismiss":"modal",
+										                	"aria-hidden":"true"
+										               		}).html('x')
+									            		).append($('<h3/>',{
+									                		id:"h3_"+modalId
+									           				}).html(modalHeader))
+									         		).append($('<div>',{
+									           			class:"modal-body"
+									           			}).append(modalBody)
+									          		).append($('<div>',{
+									            		class:"modal-footer"
+									         			}).append($('<button/>',{
+									                		type:"button",
+									                		class:"btn btn-default",
+									                		"data-dismiss":"modal",
+									                		"aria-hidden":"true"
+									               			}).html('Cancel')
+								           	  			).append($('<button/>',{
+								                			type:"button",
+								                			class:"btn btn-success",
+								               				}).html('Done').mousedown(function(e){
+								                			e.preventDefault();
+								               				}).click(function(obj){return function(){onSave.apply(obj)}}(this)))
+	         								  		)
+       											)	
+       									);	
 			modalElement.appendTo("body");
 			return modalTrigger;
 		},
@@ -1365,7 +1372,7 @@ You should have received a copy of the GNU General Public License along with thi
 				var menuWrapElement = $("<div/>", {class:"btn-group"});
 				var menuElement 	= $("<ul/>", {class:"dropdown-menu"});
 				menuWrapElement.append($('<a/>',{
-										class:"btn dropdown-toggle",
+										class:"btn btn-default dropdown-toggle",
 										"data-toggle":"dropdown",
 										"href":"javascript:void(0)",
 										"title":itemSettings["tooltip"]
@@ -1408,7 +1415,7 @@ You should have received a copy of the GNU General Public License along with thi
 				return menuWrapElement;
 		    }
 			else{
-				var menuWrapElement = $("<a/>",{href:'javascript:void(0)', class:'btn'});
+				var menuWrapElement = $("<a/>",{href:'javascript:void(0)', class:'btn btn-default'});
 				var menuElement = $("<i/>");
 				if(itemSettings["icon"])
 					menuElement.addClass(itemSettings["icon"]);
@@ -1518,7 +1525,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 		showMessage: function(target,message){
 			//Function to show the error message. Supplied arguments:target-div id, message-message text to be displayed.
-			var errorDiv=$('<div/>',{ class:"alert alert-error"	}
+			var errorDiv=$('<div/>',{ class:"alert alert-danger"	}
 				).append($('<button/>',{
 									type:"button",
 									class:"close",
@@ -1535,9 +1542,9 @@ You should have received a copy of the GNU General Public License along with thi
 			return src;
 		},
 
-		setText: function(newText){
+		setText: function(text){
 			//Function to set the source code
-			$('#contentarea').html(newText);
+			$('#contentarea').html(text);
 		},
 
 		setStyleWithCSS:function(){

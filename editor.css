@@ -1,6 +1,6 @@
 /*!
  * http://suyati.github.io/line-control
- * LineControl 1.0.1
+ * LineControl 1.1.0
  * Copyright (C) 2014, Suyati Technologies
  * This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
@@ -10,8 +10,6 @@ You should have received a copy of the GNU General Public License along with thi
 
 @charset "utf-8";
 /* base styles */
-
-
 .jumbotron {
    background-color: #67A754;
   background-image: url(images/radial_bg.png);
@@ -60,7 +58,7 @@ You should have received a copy of the GNU General Public License along with thi
     margin-bottom: 0;
     padding: 30px 0 10px;
 }
-h2.demo-text{font-family: 'Roboto', sans-serif!important; font-size:45px; font-weight:300; color:#51D2FF; text-align:center; margin:20px 0;}
+h2.demo-text{font-family: 'Roboto', sans-serif!important; font-size:45px; font-weight:300; color:#51D2FF; text-align:center; margin:20px 0; line-height:40px;}
 .features{padding:20px 0 10px 0;background:#EEE;font-family: 'Roboto', sans-serif!important; font-size:25px; line-height:35px; text-align:center;font-weight:300;}
 .footer{border-top:1px solid #DDD; margin:20px 0 10px 0; padding-top:10px; font-size:12px;}
 
@@ -96,13 +94,13 @@ h2.demo-text{font-family: 'Roboto', sans-serif!important; font-size:45px; font-w
   min-height:25px;
   padding:5px 0;
   }
-#menuBarDiv div:first-child{margin-left:5px;} 
+#menuBarDiv div:first-child{margin-left:3px;} 
 #menuBarDiv .dropdown{float:left;}
-#menuBarDiv .dropdown-toggle{font-size:12px; padding-top:1px; padding-bottom:2px;}
+#menuBarDiv .dropdown-toggle{font-size:14px; }
 #menuBarDiv .dropdown-toggle .caret{margin-left:5px; border-top-color:#999;}
 #menuBarDiv a.btn{position:relative; margin-bottom:3px;}
 #paletteCntr{}
-select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input{height:auto;}
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input{height:auto; margin-bottom:10px;}
   
 #statusbar{
   min-height:30px;
@@ -111,19 +109,22 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
   line-height:30px;
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
   }
-  
-#statusbar .label{float:right; margin:6px 10px 0 0; background:#BBB;}
-  
+#statusbar .label{
+  float:right; 
+  margin:6px 10px 0 0; 
+  background:#BBB; 
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.25); 
+  padding: 2px 4px;
+  font-size: 11.844px;
+  line-height:14px;
+} 
 .Editor-editor{ 
-  width:98%;
-  height:300px;
-  padding:1%;  
+    height:300px;
+    padding:1%;  
   border:1px solid #EEE;
   border-radius:0;
-  word-wrap: break-word;
+    word-wrap: break-word;
   }
-
-
 #paletteCntr ul
 {    
     width: 145px;
@@ -168,12 +169,11 @@ div.activeColour
     background-color:#E8E8E8!important;
     display:inline;
     position:absolute;
-  width:180px;
+  width:176px;
   top:30px;
   left:0;
-
 }
-.specialCntr ul{float:left; margin:10px; white-space:normal;}
+.specialCntr ul{float:left; margin:10px; white-space:normal; -webkit-padding-start: 0px; -moz-padding-start: 0px;}
 .specialCntr ul li{list-style:none; float:left; font-size:12px; width:20px; height:20px; background:#FFF; margin:3px; color:#333; text-align:center; font-weight:bold; cursor:pointer;}
 .specialCntr ul li:hover{background:#666; color:#FFF;}
 pre {
@@ -183,9 +183,122 @@ pre {
   white-space: -o-pre-wrap;    /* Opera 7 */
   word-wrap: break-word;       /* Internet Explorer 5.5+ */
 }
-
-
 .on{display:block; position:relative;}
 .fullscreen{position:fixed; background:#FFF; width:100%; height:100%; top:0; left:0; z-index:1000; margin:0;}
 .fullscreen #statusbar{position:fixed; bottom:0; border-top:1px solid #DDD;}
 .fullscreen #contentarea{border:none;}
+
+/***Custome Added Css for Left Tabs***/
+.tabs-below > .nav-tabs,
+.tabs-right > .nav-tabs,
+.tabs-left > .nav-tabs {
+  border-bottom: 0;
+}
+.tabs-left ul{
+  -webkit-padding-start: 0px;
+  }
+.tabs-left > .nav-tabs > li,
+.tabs-right > .nav-tabs > li {
+  float: none;
+}
+.tabs-left > .nav-tabs > li > a,
+.tabs-right > .nav-tabs > li > a {
+  min-width: 74px;
+  margin-right: 0;
+  margin-bottom: 3px;
+}
+.tabs-left > .nav-tabs {
+  float: left;
+  margin-right: 19px;
+  border-right: 1px solid #ddd;
+}
+.tabs-left > .nav-tabs > li > a {
+  margin-right: -1px;
+  -webkit-border-radius: 4px 0 0 4px;
+     -moz-border-radius: 4px 0 0 4px;
+          border-radius: 4px 0 0 4px;
+}
+.tabs-left > .nav-tabs > li > a:hover,
+.tabs-left > .nav-tabs > li > a:focus {
+  border-color: #eeeeee #dddddd #eeeeee #eeeeee;
+  outline:none;
+}
+.tabs-left > .nav-tabs .active > a,
+.tabs-left > .nav-tabs .active > a:hover,
+.tabs-left > .nav-tabs .active > a:focus {
+  border-color: #ddd transparent #ddd #ddd;
+  *border-right-color: #ffffff;
+  color:rgb(0, 176, 245) !important;
+  outline:none;
+}
+/**form control width**/
+@-moz-document url-prefix() {
+   .form-control{
+  padding:6px 12px 10px 12px;
+  }
+}
+.form-control-width{
+  width:100px;
+  }
+.form-control-link{
+  width:204px;
+  display:inline-block;
+  margin-bottom:5px;
+  margin-right:5px;
+  }
+.form-control-button-right{
+  width:204px;
+  }
+.inline-form-control{
+  display:inline !important;
+  }
+
+.btn-group + .btn-group {
+  margin-left: 5px;
+}
+.activeColour ul{
+  -webkit-padding-start: 0px;
+  -moz-padding-start: 0px;
+  }
+h1{
+  margin-top:10px;
+  line-height:40px;
+  }
+.col-lg-6 nth:child(1){
+  margin-left:0px;
+  }
+.nopadding{
+  padding:0px;
+  }
+.nopadding-right{
+  padding-right:0px;
+  }
+.modal{
+  overflow-y:auto;
+  }
+.padding-top{
+  padding-top:10px;
+  }
+/*** Drop Down Menu***/
+.dropdown-submenu
+{position:relative;}
+.dropdown-submenu>.dropdown-menu{top:0;left:100%;margin-top:-6px;margin-left:-1px;-webkit-border-radius:0 6px 6px 6px;-moz-border-radius:0 6px 6px 6px;border-radius:0 6px 6px 6px;}
+.dropdown-submenu:hover>.dropdown-menu{display:block;}
+.dropdown-submenu>a:after{display:block;content:" ";float:right;width:0;height:0;border-color:transparent;border-style:solid;border-width:5px 0 5px 5px;border-left-color:#cccccc;margin-top:5px;margin-right:-10px;}
+.dropdown-submenu:hover>a:after{border-left-color:#ffffff;}
+.dropdown-submenu.pull-left{float:none;}.dropdown-submenu.pull-left>.dropdown-menu{left:-100%;margin-left:10px;-webkit-border-radius:6px 0 6px 6px;-moz-border-radius:6px 0 6px 6px;border-radius:6px 0 6px 6px;}
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus, .dropdown-submenu:hover>a, .dropdown-submenu:focus>a {
+  color: #fff;
+  text-decoration: none;
+  background-color: #0081c2;
+  background-image: -moz-linear-gradient(top,#08c,#0077b3);
+  background-image: -webkit-gradient(linear,0 0,0 100%,from(#08c),to(#0077b3));
+  background-image: -webkit-linear-gradient(top,#08c,#0077b3);
+  background-image: -o-linear-gradient(top,#08c,#0077b3);
+  background-image: linear-gradient(to bottom,#08c,#0077b3);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc',endColorstr='#ff0077b3',GradientType=0);
+}
+.dropdown-menu>li>a{
+  cursor:pointer;
+  }

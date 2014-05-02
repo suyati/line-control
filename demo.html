@@ -1,14 +1,14 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script src="editor.js"></script>
 
-<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-<link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-<link type="text/css" href="editor.css" rel="stylesheet"/>
-<title>LineControl | v.1.0.1</title>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+<link href="editor.css" type="text/css" rel="stylesheet"/>
+<title>LineControl | v1.1.0</title>
 <script type="text/javascript">
 		$(document).ready( function() {
             
@@ -17,15 +17,21 @@
     });
   </script>
 </head>
-
 <body>
-<div class="row-fluid">
+<div class="container-fluid">
+<div class="row">
 <h2 class="demo-text">LineControl Demo</h2>
 <div class="container">
-  <textarea id="txtEditor"></textarea>
+<div class="row">
+	<div class="col-lg-12 nopadding">
+    	<textarea id="txtEditor"></textarea> 
+    </div>
+</div>  
+</div>
 </div>
 </div>
 <div class="container-fluid footer">
-  <p class="pull-right">&copy; Suyati Technologies 2013. All rights reserved.</p></div>
+  <p class="pull-right">&copy; Suyati Technologies <script>document.write(new Date().getFullYear())</script>. All rights reserved.</p>
+</div>
 </body>
 </html>
