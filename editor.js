@@ -1538,13 +1538,13 @@ You should have received a copy of the GNU General Public License along with thi
 		
 		getText: function(){
 			//Function to get the source code.
-			var src = $('#contentarea').html();
+			var src = $($(this).parent()).find("#contentarea").html();
 			return src;
 		},
 
 		setText: function(text){
 			//Function to set the source code
-			$('#contentarea').html(text);
+			$($(this).parent()).find("#contentarea").html(text);
 		},
 
 		setStyleWithCSS:function(){
