@@ -1011,18 +1011,20 @@ You should have received a copy of the GNU General Public License along with thi
 										css : {overflow: "auto"},
 										contenteditable:"true"
 						 	}).appendTo(containerDiv);
-	       	if(settings['status_bar']){
-				var statusBar = $("<div/>", {	class: "row-fluid",
-												unselectable:"on",
-								}).appendTo(containerDiv);
-				editor.keyup(function(event){
-					var wordCount = methods.getWordCount.apply(this);
-					$(this).data("statusBar").html('<div class="label">'+'Words : '+wordCount+'</div>');
-            	});
-	        }	        
+			var statusBar = $("<div/>", {	id : "statusbar",
+											class: "row-fluid",
+											unselectable:"on",
+							}).appendTo(containerDiv);
 	       	$(this).data("menuBar", menuBar);
 	       	$(this).data("editor", editor);
 	       	$(this).data("statusBar", statusBar);
+	       	var editor_Content = this;
+	       	if(settings['status_bar']){
+				editor.keyup(function(event){
+					var wordCount = methods.getWordCount.apply(editor_Content);
+					$(editor_Content).data("statusBar").html('<div class="label">'+'Words : '+wordCount+'</div>');
+            	});
+	        }	        
 	       	
 	       	
 	       	for(var item in menuItems){
