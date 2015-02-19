@@ -538,28 +538,30 @@ You should have received a copy of the GNU General Public License along with thi
 											"tooltip": "Text/Background Color",
 											"commandname":null,
 											"custom":function(button){
+													var editor = $(this);
 													var flag = 0;
 													var paletteCntr   = $('<div/>',{id:"paletteCntr",class:"activeColour", css :{"display":"none","width":"335px"}}).click(function(event){event.stopPropagation();});
 													var paletteDiv    = $('<div/>',{id:"colorpellete"});
 													var palette       = $('<ul />',{id:"color_ui"}).append($('<li />').css({"width":"145px","display":"Block","height":"25px"}).html('<div>Text Color</div>'));
 													var bgPalletteDiv = $('<div/>',{id:"bg_colorpellete"});
 													var bgPallette    = $('<ul />',{id:"bgcolor_ui"}).append($('<li />').css({"width":"145px","display":"Block","height":"25px"}).html('<div>Background Color</div>'));
-													if($(this).data("editor").data("colorBtn")){
+													if(editor.data("colorBtn")){
 														flag = 1;
-														$(this).data("editor").data("colorBtn",null);
+														editor.data("colorBtn",null);
 													}
 													else
-														$(this).data("editor").data("colorBtn",1);
+														editor.data("colorBtn",1);
 													if(flag==0){
 														for (var i = 0; i < colors.length; i++){
 															if(colors[i].hex!=null){
 															    palette.append($('<li />').css('background-color', colors[i].hex).mousedown(function(event){ event.preventDefault();}).click(function(){															
-																var hexcolor = methods.rgbToHex.apply(this,[$(this).css('background-color')]);
-																methods.restoreSelection.apply(this);
-																methods.setStyleWithCSS.apply(this);
-																document.execCommand('forecolor',false,hexcolor);
-																$('#paletteCntr').remove();
-																$(this).data("editor").data("colorBtn",null);
+																	var hexcolor = methods.rgbToHex.apply(this,[$(this).css('background-color')]);
+																	methods.restoreSelection.apply(this);
+																	methods.setStyleWithCSS.apply(this);
+																	document.execCommand('forecolor',false,hexcolor);
+																	$('#paletteCntr').remove();
+
+																	editor.data("colorBtn",null);
 																}));
 
 																bgPallette.append($('<li />').css('background-color', colors[i].hex).mousedown(function(event){ event.preventDefault();}).click(function(){															
@@ -568,7 +570,7 @@ You should have received a copy of the GNU General Public License along with thi
 																methods.setStyleWithCSS.apply(this);
 																document.execCommand('backColor',false,hexcolor);
 																$('#paletteCntr').remove();
-																$(this).data("editor").data("colorBtn",null);
+																editor.data("colorBtn",null);
 																}));
 															}
 															else{
@@ -909,6 +911,7 @@ You should have received a copy of the GNU General Public License along with thi
 													var flag =0;
 													var splCharDiv = $('<div/>',{id:"specialchar", class:"specialCntr", css :{"display":"none"}}).click(function(event) { event.stopPropagation();});
 													var splCharUi  = $('<ul />',{id:"special_ui"});
+													var editor_Content = this; 
 													if($(this).data("editor").data("splcharsBtn")){
 														flag = 1;
 														$(this).data("editor").data("splcharsBtn", null);
@@ -927,7 +930,7 @@ You should have received a copy of the GNU General Public License along with thi
 																	document.execCommand('insertHTML',false,$(this).html());
 																}
 																$('#specialchar').remove();
-																$(this).data("editor").data("splcharsBtn", null);
+																$(editor_Content).data("editor").data("splcharsBtn", null);
 															}));
 														}														
 														splCharUi.prependTo(splCharDiv);
@@ -1063,14 +1066,14 @@ You should have received a copy of the GNU General Public License along with thi
 		        if (!target.parents().andSelf().is('#specialchar') && (target.closest('a').html()!='<i class="fa fa-asterisk"></i>')) { //Clicked outside
 		        	if($("#specialchar").is(':visible'))
 		            {
-						$(this).data("editor").data("splcharsBtn", null);
+						$(editor_Content).data("editor").data("splcharsBtn", null);
 						$('#specialchar').remove();
 		           	}
 		        }
 		        if (!target.parents().andSelf().is('#paletteCntr') && (target.closest('a').html()!='<i class="fa fa-font"></i>')) { //Clicked outside
 		        	if($("#paletteCntr").is(':visible'))
 		            {
-						$(this).data("editor").data("colorBtn", null);
+						$(editor_Content).data("editor").data("colorBtn", null);
 						$('#paletteCntr').remove();
 		           	}
 		        }
