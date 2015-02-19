@@ -1461,6 +1461,7 @@ You should have received a copy of the GNU General Public License along with thi
 			}
 			else
 				button.data('state', 1);
+			$(this).data("source-mode", !flag);
 			var editor = $(this).data('editor');
 			var content;
 			if(flag==0){ //Convert text to HTML			
@@ -1476,14 +1477,7 @@ You should have received a copy of the GNU General Public License along with thi
 				button.siblings().hide();
 			}
 			else{
-				var html='';
-				ch = editor.find(">:first-child").contents().filter(function() { 
-					return (this.nodeType == 3); 
-				});
-				ch = ch[0];
-				if(typeof ch!='undefined'){
-					html = ch.textContent;
-				}				
+				var html = editor.children().first().text();
 				editor.html(html);
 				editor.attr('contenteditable', true);
 				button.parent().siblings().show();
@@ -1538,13 +1532,18 @@ You should have received a copy of the GNU General Public License along with thi
 		
 		getText: function(){
 			//Function to get the source code.
-			var src = $(this).data("editor").html();
-			return src;
+			if(!$(this).data("source-mode"))
+				return $(this).data("editor").html();
+			else
+				return $(this).data("editor").children().first().text();
 		},
 
 		setText: function(text){
 			//Function to set the source code
-			$(this).data("editor").html(text);
+			if(!$(this).data("source-mode"))
+				$(this).data("editor").html(text);
+			else
+				$(this).data("editor").children().first().text(text);
 		},
 
 		setStyleWithCSS:function(){
