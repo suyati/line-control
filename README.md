@@ -9,7 +9,16 @@ and then in your script section just call:
 ```
 var editor = $("#placeHolder").Editor();
 ```
+### Get Text from editor
+```
+$("#placeHolder").Editor("getText");
 
+```
+### Set Text to editor
+```
+$("#placeHolder").Editor("setText", "Hello")
+
+```
 ### Dependencies
 LineControl is built as a JQuery Plugin and supports Jquery 2.1.0. LineControl is also built for responsiveness and uses Twitter Bootstrap and Font-Awesome icons to render its Interface. The following is required for your LineControl to function perfectly
 * Jquery (2.1.0)
