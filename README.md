@@ -58,4 +58,4 @@ It is written and maintained by their Open Source Development Team:
 * Sujith Panikkam (@spanikkam)
 
 ### Support or Contact
-Have Suggestions? Want to give us something to do? Contact us at : **support@suyati.com**
+Have Suggestions? Want to give us something to do? Contact us at : **lcsupport@suyati.com**
