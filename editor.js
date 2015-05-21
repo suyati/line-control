@@ -721,7 +721,7 @@ You should have received a copy of the GNU General Public License along with thi
 												    methods.restoreSelection.apply(editorObj, [targetText]);																																		
 													document.execCommand('createLink',false,targetURL);
 												}
-												$(editorObj).data("editor").find('a[href="'+targetURL+'"]').each(function(){ $(editorObj).attr("target", "_blank"); });
+												$(editorObj).data("editor").find('a[href="'+targetURL+'"]').each(function(){ $(this).attr("target", "_blank"); });
 												$(".alert").alert("close");
 												$("#InsertLink").modal("hide");
 												$(editorObj).data("editor").focus();
@@ -1027,7 +1027,9 @@ You should have received a copy of the GNU General Public License along with thi
 	       	if(settings['status_bar']){
 				editor.keyup(function(event){
 					var wordCount = methods.getWordCount.apply(editor_Content);
+					var charCount = methods.getCharCount.apply(editor_Content);
 					$(editor_Content).data("statusBar").html('<div class="label">'+'Words : '+wordCount+'</div>');
+					$(editor_Content).data("statusBar").append('<div class="label">'+'Characters : '+charCount+'</div>');
             	});
 	        }	        
 	       	
@@ -1492,7 +1494,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 		countWords: function(node){
 			//Function to count the number of words recursively as the text grows in the editor.
-			var count = 0			
+			var count = 0;	
     		var textNodes = node.contents().filter(function() { 
 				return (this.nodeType == 3); 
 			});			
@@ -1508,9 +1510,30 @@ You should have received a copy of the GNU General Public License along with thi
 			return count
 		},
 
+		countChars: function(node){
+			//Function to count the number of characters recursively as the text grows in the editor.
+			var count = 0;
+    		var textNodes = node.contents().filter(function() { 
+				return (this.nodeType == 3); 
+			});
+			for(var index=0;index<textNodes.length;index++){
+				text = textNodes[index].textContent;
+				count = count + text.length;
+			}
+			var childNodes = node.children().each(function(){
+				count = count + methods.countChars.apply(this, [$(this)]);
+			});
+			return count;
+		},
+
 		getWordCount: function(){
 			//Function to return the word count of the text in the editor
 			return methods.countWords.apply(this, [$(this).data("editor")]);
+		},
+
+		getCharCount: function(){
+			//Function to return the character count of the text in the editor
+			return methods.countChars.apply(this, [$(this).data("editor")]);
 		},
 
 		rgbToHex: function(rgb){
