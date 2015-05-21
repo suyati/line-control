@@ -8,7 +8,8 @@ You should have received a copy of the GNU General Public License along with thi
  *
 */
 
-(function( $ ){ 
+(function( $ ){
+	var editorObj;
 	var methods = {
 		saveSelection: function() {
 			//Function to save the text selection range from the editor
@@ -688,24 +689,25 @@ You should have received a copy of the GNU General Public License along with thi
 																		placeholder:"Enter URL"
 																	})),
 											"beforeLoad":function(){ 
+												editorObj = this;
 												$('#inputText').val("");
 												$('#inputUrl').val("");
 												$(".alert").alert("close");
-												if($(this).data('currentRange')!=''){ 
-													$('#inputText').val($(this).data('currentRange'));
+												if($(editorObj).data('currentRange')!=''){ 
+													$('#inputText').val($(editorObj).data('currentRange'));
 												}
 											},
 											"onSave":function(){
 												var urlPattern = /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/;
 												var targetText = $('#inputText').val();
 												var targetURL  = $('#inputUrl').val();
-												var range      = $(this).data('currentRange');
+												var range      = $(editorObj).data('currentRange');
 												if(targetURL ==''){
-													methods.showMessage.apply(this,["errMsg","Please enter url"]);
+													methods.showMessage.apply(editorObj,["errMsg","Please enter url"]);
 													return false;
 												}												
 												if(!targetURL.match(urlPattern)){
-													methods.showMessage.apply(this,["errMsg","Enter valid url"]);
+													methods.showMessage.apply(editorObj,["errMsg","Enter valid url"]);
 													return false;
 												}													
 												if(range=='' && targetText==''){ 
@@ -713,16 +715,16 @@ You should have received a copy of the GNU General Public License along with thi
 												}
 												if(navigator.userAgent.match(/MSIE/i)){	
 													var targetLink='<a href="'+targetURL+'" target="_blank">'+targetText+'</a>';
-													methods.restoreSelection.apply(this,[targetLink,'html']);
+													methods.restoreSelection.apply(editorObj,[targetLink,'html']);
 												}
 												else{
-												    methods.restoreSelection.apply(this, [targetText]);																																		
+												    methods.restoreSelection.apply(editorObj, [targetText]);																																		
 													document.execCommand('createLink',false,targetURL);
 												}
-												$(this).data("editor").find('a[href="'+targetURL+'"]').each(function(){ $(this).attr("target", "_blank"); });
+												$(editorObj).data("editor").find('a[href="'+targetURL+'"]').each(function(){ $(editorObj).attr("target", "_blank"); });
 												$(".alert").alert("close");
 												$("#InsertLink").modal("hide");
-												$(this).data("editor").focus();
+												$(editorObj).data("editor").focus();
 												return false;
 											}},
 
