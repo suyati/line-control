@@ -1097,7 +1097,7 @@ You should have received a copy of the GNU General Public License along with thi
 	       			cMenuUl.appendTo(cMenu);
 	       		    cMenu.appendTo('body');
 	       		}
-	       		else if($(e.target).is('td')){
+	       		else if($(e.target).is('td') || $(e.target).is("th")){
 	       			methods.createTableContext.apply(this,[e,cMenuUl]);
 	       			cMenuUl.appendTo(cMenu);
 	       		    cMenu.appendTo('body');
@@ -1265,15 +1265,14 @@ You should have received a copy of the GNU General Public License along with thi
 											"text":"Add Row"
 											}).click(function(e){
 												return function(){
-													var row = $(e.target).closest('table').prop('rows').length;
-													var columns = $(e.target).closest('table').find('tr')[0].cells.length;
-													var newTblRow = $('<tr/>');
-													for(var j=1; j<=columns; j++){
-												 		var newTblCol = $('<td/>').html('&nbsp;');
-												 		newTblCol.appendTo(newTblRow);
-												 	}
-											 		newTblRow.appendTo($(e.target).closest('table'));
-											 		$('#context-menu').remove();
+													$("#context-menu").remove();
+													var selectedRow = $(e.target).closest("tr");
+													var newRow = $("<tr/>");
+													selectedRow.children().each(function() {
+														var newColumn = $("<" + $(this).prop("nodeName") + "/>").html("&nbsp;");
+														newRow.append(newColumn);
+													});
+													selectedRow.after(newRow);
 												}
 											}(event))))
        								.append($('<li/>').append($('<a/>',{text:"Remove Row"}).click( 
@@ -1290,20 +1289,24 @@ You should have received a copy of the GNU General Public License along with thi
 										"text":"Add Column",
 										}).click(function(e){
 											return function(){
-												var row = $(e.target).closest('table').prop('rows').length;
-												var columns = $(e.target).closest('table').find('tr')[0].cells.length;
-												$(e.target).closest('table').find('tr').each(function(){
-										 			$(this).append($('<td/>'));
-										 		});
-										 		$('#context-menu').remove();
+												$('#context-menu').remove();
+												var selectedCell = $(e.target);
+												var columnIndex = selectedCell.siblings().addBack().index(selectedCell);
+												selectedCell.closest("table").find("tr").each(function() {
+													var cellInSelectedColumn = $(this).children(":eq(" + columnIndex + ")");
+													var newCell = $("<" + cellInSelectedColumn.prop("nodeName") + "/>").html("&nbsp;");
+													cellInSelectedColumn.after(newCell);
+												});
 											}
 										}(event))))
    								.append($('<li/>').append($('<a/>',{text:"Remove Column"}).click( 
 										function(e) { return function(){ 
 												$('#context-menu').remove();
-												var colnum = $(e.target).closest("td").length;
-												$(e.target).closest("table").find("tr").each(function(){ 
-													$(this).find("td:eq(" + colnum + ")").remove()}); 
+												var selectedCell = $(e.target);
+												var columnIndex = selectedCell.siblings().addBack().index(selectedCell);
+												selectedCell.closest("table").find("tr").each(function() {
+													$(this).children(":eq(" + columnIndex + ")").remove();
+												});
 										}}(event))))
    						));
 			cMenuUl.append($('<li/>').append(modalTrigger))
