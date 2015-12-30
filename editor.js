@@ -1033,6 +1033,10 @@ You should have received a copy of the GNU General Public License along with thi
             	});
 	        }	        
 	       	
+			editor.on('keyup', function (event) {
+	       	    $this.val(methods.getText.apply(editor_Content));
+	       	    if (typeof options.changeCallback !== 'undefined') options.changeCallback($this.val());
+		     });
 	       	
 	       	for(var item in menuItems){
 	       		if(!settings[item] ){ //if the display is not set to true for the button in the settings.	       		
