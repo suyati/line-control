@@ -1005,7 +1005,7 @@ You should have received a copy of the GNU General Public License along with thi
 				'togglescreen':true
 			},options);
 
-	       	var containerDiv = $("<div/>",{ class : "row-fluid Editor-container" });
+	       	var containerDiv = $("<div contentEditable />",{ class : "row-fluid Editor-container", tabindex : "0" });
 			var $this = $(this).hide();	       	
 	       	$this.after(containerDiv); 
 
@@ -1031,13 +1031,17 @@ You should have received a copy of the GNU General Public License along with thi
 					$(editor_Content).data("statusBar").html('<div class="label">'+'Words : '+wordCount+'</div>');
 					$(editor_Content).data("statusBar").append('<div class="label">'+'Characters : '+charCount+'</div>');
             	});
-	        }	        
-	       	
-			editor.on('keyup', function (event) {
+	        }
+
+	       	containerDiv.on("blur", function (event) {
+	       	    console.log(typeof editorObj, editorObj);
 	       	    $this.val(methods.getText.apply(editor_Content));
 	       	    if (typeof options.changeCallback !== 'undefined') options.changeCallback($this.val());
-		     });
-	       	
+	       	    $(editorObj).data("editor").focus();
+		           
+		       });
+
+		    
 	       	for(var item in menuItems){
 	       		if(!settings[item] ){ //if the display is not set to true for the button in the settings.	       		
 	       			if(settings[item] in menuGroups){
