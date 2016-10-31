@@ -713,7 +713,7 @@ You should have received a copy of the GNU General Public License along with thi
 												if(range=='' && targetText==''){ 
 													targetText =targetURL;	
 												}
-												if(navigator.userAgent.match(/MSIE/i)){	
+												if(navigator.userAgent.match(/MSIE/i) || navigator.userAgent.match(/Windows NT.*Trident\//)){	
 													var targetLink='<a href="'+targetURL+'" target="_blank">'+targetText+'</a>';
 													methods.restoreSelection.apply(editorObj,[targetLink,'html']);
 												}
@@ -742,7 +742,7 @@ You should have received a copy of the GNU General Public License along with thi
 											"onSave": function(){
 												methods.restoreSelection.apply(this);												
 												if($('#imageList').data('current')){
-													if(navigator.userAgent.match(/MSIE/i)){
+													if(navigator.userAgent.match(/MSIE/i) || navigator.userAgent.match(/Windows NT.*Trident\//)){
 														var imageStr = '<img src="'+$('#imageList').data('current')+'"/>'
 														methods.restoreSelection.apply(this,[imageStr,'html'])
 													}
@@ -821,7 +821,7 @@ You should have received a copy of the GNU General Public License along with thi
 																	];
 												var htmlTable     = methods.getHTMLTable.apply(this, [tblRows, tblColumns, tblAttributes]);
 												htmlTable.appendTo(htmlTableCntr);
-												if(navigator.userAgent.match(/MSIE/i))
+												if(navigator.userAgent.match(/MSIE/i) || navigator.userAgent.match(/Windows NT.*Trident\//))
 												methods.restoreSelection.apply(this,[htmlTableCntr.html(),'html']);
 												else
 												document.execCommand('insertHTML', false, htmlTableCntr.html());
@@ -841,7 +841,7 @@ You should have received a copy of the GNU General Public License along with thi
 											"commandname":null, 
 											"custom":function(){ 
 												methods.setStyleWithCSS.apply(this);
-												if(navigator.userAgent.match(/MSIE/i)){													 
+												if(navigator.userAgent.match(/MSIE/i) || navigator.userAgent.match(/Windows NT.*Trident\//)){													 
 													document.execCommand('indent', false, null); 	
 												}
 												else{
@@ -924,7 +924,7 @@ You should have received a copy of the GNU General Public License along with thi
 													if(flag==0){
 														for (var i = 0; i < specialchars.length; i++){															
 															splCharUi.append($('<li />').html(specialchars[i].text).attr('title',specialchars[i].name).mousedown(function(event){ event.preventDefault();}).click(function(event){
-																if(navigator.userAgent.match(/MSIE/i)){
+																if(navigator.userAgent.match(/MSIE/i) || navigator.userAgent.match(/Windows NT.*Trident\//)){
 																	var specCharHtml = $(this).html();
 																	methods.insertTextAtSelection.apply(this,[specCharHtml,'html']);
 																}
