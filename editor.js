@@ -1009,15 +1009,13 @@ You should have received a copy of the GNU General Public License along with thi
 			var $this = $(this).hide();	       	
 	       	$this.after(containerDiv); 
 
-	       	var menuBar = $( "<div/>",{ id : "menuBarDiv",
-								  		class : "row-fluid"
+			var menuBar = $( "<div/>",{	class : "row-fluid menuBarDiv",
 							}).prependTo(containerDiv);
 	       	var editor  = $( "<div/>",{	class : "Editor-editor",
 										css : {overflow: "auto"},
 										contenteditable:"true"
 						 	}).appendTo(containerDiv);
-			var statusBar = $("<div/>", {	id : "statusbar",
-											class: "row-fluid",
+			var statusBar = $("<div/>", {	class: "row-fluid statusBar",
 											unselectable:"on",
 							}).appendTo(containerDiv);
 	       	$(this).data("menuBar", menuBar);
