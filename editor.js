@@ -120,10 +120,11 @@ You should have received a copy of the GNU General Public License along with thi
 
 		imageWidget: function(){
 			//Class for Widget Handling the upload of Files
+			var _idSuffix = this.attr("id");
 			var row = $('<div/>',{
 				"class":"row"
 			}).append($('<div/>',{
-				id :"imgErrMsg"
+				id :"imgErrMsg_" + _idSuffix
 			}));
 			var container = $('<div/>',{'class':"tabbable tabs-left"});
 			var navTabs = $('<ul/>',
@@ -131,17 +132,17 @@ You should have received a copy of the GNU General Public License along with thi
 							}).append($('<li/>',
 										{ class:"active"
 									}).append($('<a/>',{
-											"href":"#uploadImageBar",
+											"href":"#uploadImageBar_" + _idSuffix,
 											"data-toggle":"tab"
 										}).html("From Computer")
 							)).append($('<li/>').append($('<a/>',{
-											"href":"#imageFromLinkBar",
+											"href":"#imageFromLinkBar_" + _idSuffix,
 											"data-toggle":"tab"
 										}).html("From URL")));
 
 			var tabContent 		= $("<div/>", {class:"tab-content"});
 			var uploadImageBar  = $("<div/>",{
-				id: "uploadImageBar",
+				id: "uploadImageBar_" + _idSuffix,
 				class: "tab-pane active"
 			});
 
@@ -151,7 +152,7 @@ You should have received a copy of the GNU General Public License along with thi
 				for (var i = 0, f; f = files[i]; i++) {
 					//Loop thorugh all the files
 					if(!f.type.match('image.*') || !f.name.match(/(?:gif|jpg|png|jpeg)$/)){ //Process only Images
-						methods.showMessage.apply(this,["imgErrMsg","Invalid file type"]);
+						methods.showMessage.apply(this,["imgErrMsg_" + _idSuffix,"Invalid file type"]);
 						continue;
 					}
 					var reader = new FileReader();
@@ -167,9 +168,9 @@ You should have received a copy of the GNU General Public License along with thi
 								src:e.target.result,
 								title:escape(imageFile.name)
 							}).appendTo(a).click(function(){
-								$('#imageList').data('current', $(this).attr('src'));
+								$('#imageList_' + _idSuffix).data('current', $(this).attr('src'));
 								});
-							li.append(a).appendTo($('#imageList'));
+							li.append(a).appendTo($('#imageList_' + _idSuffix));
 						}
 					})(f);
 					reader.readAsDataURL(f);					
@@ -180,26 +181,26 @@ You should have received a copy of the GNU General Public License along with thi
 				class:"inline-form-control",
 				multiple: "multiple"
 			});
-			chooseFromLocal.on('change', handleFileSelect);			
+			chooseFromLocal.on('change', handleFileSelect);
 			uploadImageBar.append(chooseFromLocal);
 			var imageFromLinkBar = $("<div/>",{
-				id: "imageFromLinkBar",
+				id: "imageFromLinkBar_" + _idSuffix,
 				class: "tab-pane"
 			});		
 			var getImageURL = $("<div/>", {class:"input-group"});
 			var imageURL = $('<input/>',{
 				type: "url",
 				class:'form-control',
-				id:"imageURL",
+				id:"imageURL_" + _idSuffix,
 				placeholder: "Enter URL"
 			}).appendTo(getImageURL);
 			var getURL = $("<button/>",{
 				class:"btn btn-success",
 				type:"button"
 			}).html("Go!").click(function(){
-				var url = $('#imageURL').val();
+				var url = $('#imageURL_' + _idSuffix).val();
 				if(url ==''){
-					methods.showMessage.apply(this,["imgErrMsg","Please enter image url"]);
+					methods.showMessage.apply(this,["imgErrMsg_" + _idSuffix,"Please enter image url"]);
 					return false;
 				}
 				var li = $('<li/>',{class:"span6 col-xs-12 col-sm-6 col-md-3 col-lg-3"});
@@ -210,12 +211,12 @@ You should have received a copy of the GNU General Public License along with thi
 				var image = $('<img/>',{
 					src:url,
 				}).error(function(){
-				  	methods.showMessage.apply(this,["imgErrMsg","Invalid image url"]); 
+				  	methods.showMessage.apply(this,["imgErrMsg_" + _idSuffix,"Invalid image url"]);
 				  	return false;
 				}).load( function() { $(this).appendTo(a).click(function(){
-					$('#imageList').data('current', $(this).attr('src'));
+					$('#imageList_' + _idSuffix).data('current', $(this).attr('src'));
 				});
-				li.append(a).appendTo($('#imageList'));
+				li.append(a).appendTo($('#imageList_' + _idSuffix));
 			});
 			}).appendTo($("<span/>", {class:"input-group-btn form-control-button-right"}).appendTo(getImageURL));
 
@@ -225,7 +226,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 			var imageListContainer = $("<div/>",{'class': 'col-xs-12 col-sm-12 col-md-12 col-lg-12'});
 			var imageList = $('<ul/>',{"class":"thumbnails padding-top list-unstyled",
-										"id": 'imageList'
+										"id": 'imageList_' + _idSuffix
 			}).appendTo(imageListContainer);
 			row.append(container).append(imageListContainer);
 			return row;
@@ -233,10 +234,10 @@ You should have received a copy of the GNU General Public License along with thi
 
 		tableWidget: function(mode){
 			//Function to generate the table input form
-			var idExtn ='';
-			if(typeof mode!=='undefined')
-				idExtn = "Edt";
-					
+			var idExtn = "_" + $(this).attr("id");
+			if (typeof mode!=='undefined') {
+				idExtn = "_" + editorObj.attr("id") + "_Edt";
+			}
 			var tblCntr = $('<div/>',{ //Outer Container Div
 				class:"row-fluid"
 				}).append($('<div/>',{ //Err Message Div
@@ -355,6 +356,9 @@ You should have received a copy of the GNU General Public License along with thi
 
 		init : function( options )
 		{
+			if ($(this).attr("id") === undefined || $(this).attr("id") === "") {
+				$(this).attr("id", Date.now());
+			}
 			var fonts = { "Sans serif"	 : "arial,helvetica,sans-serif",
 						  "Serif"	 	 : "times new roman,serif",
 						  "Wide"	 	 : "arial black,sans-serif",
@@ -669,38 +673,40 @@ You should have received a copy of the GNU General Public License along with thi
 											"custom":null },
 
 						   'insert_link': { "modal": true,
-						   					"modalId": "InsertLink", 
+						   					"modalId": "InsertLink_" + $(this).attr("id"),
 											"icon":"fa fa-link", 
 											"tooltip": "Insert Link", 
 											"modalHeader": "Insert Hyperlink",
 											"modalBody": $('<div/>',{   class:"form-group"
 																	}).append($('<div/>',{
-																		id :"errMsg"
+																		id :"errMsg_" + $(this).attr("id")
 																	})).append($('<input/>',{
 																		type:"text",
-																		id:"inputText",
+																		id:"inputText_" + $(this).attr("id"),
 																		class:"form-control form-control-link ",
 																		placeholder:"Text to Display",
 																	})).append($('<input/>',{
 																		type:"text",
-																		id:"inputUrl",
+																		id:"inputUrl_" + $(this).attr("id"),
 																		required:true,
 																		class:"form-control form-control-link",
 																		placeholder:"Enter URL"
 																	})),
 											"beforeLoad":function(){ 
 												editorObj = this;
-												$('#inputText').val("");
-												$('#inputUrl').val("");
+												var _idSuffix = "_" + this.attr("id");
+												$('#inputText' + _idSuffix);
+												$('#inputUrl' + _idSuffix);
 												$(".alert").alert("close");
 												if($(editorObj).data('currentRange')!=''){ 
-													$('#inputText').val($(editorObj).data('currentRange'));
+													$('#inputText_' +  _idSuffix).val($(editorObj).data('currentRange'));
 												}
 											},
 											"onSave":function(){
 												var urlPattern = /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/;
-												var targetText = $('#inputText').val();
-												var targetURL  = $('#inputUrl').val();
+												var _idSuffix = "_" + editorObj.attr("id");
+												var targetText = $('#inputText' + _idSuffix).val();
+												var targetURL  = $('#inputUrl' + _idSuffix).val();
 												var range      = $(editorObj).data('currentRange');
 												if(targetURL ==''){
 													methods.showMessage.apply(editorObj,["errMsg","Please enter url"]);
@@ -723,60 +729,65 @@ You should have received a copy of the GNU General Public License along with thi
 												}
 												$(editorObj).data("editor").find('a[href="'+targetURL+'"]').each(function(){ $(this).attr("target", "_blank"); });
 												$(".alert").alert("close");
-												$("#InsertLink").modal("hide");
+												$("#InsertLink" + _idSuffix).modal("hide");
 												$(editorObj).data("editor").focus();
 												return false;
 											}},
 
 						   'insert_img'	: { "modal": true,
-						   					"modalId": "InsertImage", 
+						   					"modalId": "InsertImage_" + $(this).attr("id"), 
 											"icon":"fa fa-picture-o", 
 											"tooltip": "Insert Image", 
 											"modalHeader": "Insert Image",
 											"modalBody": methods.imageWidget.apply(this),
-											"beforeLoad":function(){ 
-												$('#imageURL').val("");
-												$("#uploadImageBar :input").val("");
-												$('#imageList').data('current',"");																																				
+											"beforeLoad":function(){
+												editorObj = this;
+												var _idSuffix = editorObj.attr("id");
+												$('#imageURL_' + _idSuffix).val("");
+												$("#uploadImageBar_" + _idSuffix + " :input").val("");
+												$('#imageList_' + _idSuffix).data('current',"");																																				
 											},
 											"onSave": function(){
+												var _idSuffix = "_" + editorObj.attr("id");
 												methods.restoreSelection.apply(this);												
-												if($('#imageList').data('current')){
+												if($('#imageList' + _idSuffix).data('current')){
 													if(navigator.userAgent.match(/MSIE/i) || navigator.userAgent.match(/Windows NT.*Trident\//)){
-														var imageStr = '<img src="'+$('#imageList').data('current')+'"/>'
+														var imageStr = '<img src="'+$('#imageList' + _idSuffix).data('current')+'"/>'
 														methods.restoreSelection.apply(this,[imageStr,'html'])
 													}
 													else{
-														document.execCommand('insertimage', false, $('#imageList').data('current'));
+														document.execCommand('insertimage', false, $('#imageList' + _idSuffix).data('current'));
 													}
 												}
 												else{
-													methods.showMessage.apply(this,["imgErrMsg","Please select an image"]);
+													methods.showMessage.apply(this,["imgErrMsg" + _idSuffix,"Please select an image"]);
 													return false;
 												}
-												$("#InsertImage").modal("hide");
+												$("#InsertImage" + _idSuffix).modal("hide");
 												$(this).data("editor").focus();
 											}},
 
 						'insert_table'	: { "modal": true,
-					   						"modalId": "InsertTable", 
+					   						"modalId": "InsertTable_" + $(this).attr("id"), 
 											"icon":"fa fa-table", 
 											"tooltip": "Insert Table", 
 											"modalHeader": "Insert Table",
 											"modalBody":methods.tableWidget.apply(this),
-											"beforeLoad":function(){ 													
-												$('#tblForm').each (function(){ this.reset(); });																																	
+											"beforeLoad":function(){
+												editorObj = this;
+												$('#tblForm_' + editorObj.attr("id")).each (function(){ this.reset(); });																																	
 											},
 											"onSave": function(){
+												_idSuffix = "_" + editorObj.attr("id");
 												methods.restoreSelection.apply(this);
-												var tblRows        = $('#tblRows').val();
-												var tblColumns     = $('#tblColumns').val();
-												var tblWidth       = $('#tblWidth').val();
-												var tblHeight      = $('#tblHeight').val();
-												var tblAlign       = $('#tblAlign').val();
-												var tblBorder      = $('#tblBorder').val();
-												var tblCellspacing = $('#tblCellspacing').val();
-												var tblCellpadding = $('#tblCellpadding').val();
+												var tblRows        = $('#tblRows' + _idSuffix).val();
+												var tblColumns     = $('#tblColumns' + _idSuffix).val();
+												var tblWidth       = $('#tblWidth' + _idSuffix).val();
+												var tblHeight      = $('#tblHeight' + _idSuffix).val();
+												var tblAlign       = $('#tblAlign'  + _idSuffix).val();
+												var tblBorder      = $('#tblBorder' + _idSuffix).val();
+												var tblCellspacing = $('#tblCellspacing' + _idSuffix).val();
+												var tblCellpadding = $('#tblCellpadding' + _idSuffix).val();
 												var intReg 		   = /^[0-9]+$/;
 												var cssReg 		   = /^auto$|^[+-]?[0-9]+\.?([0-9]+)?(px|em|ex|%|in|cm|mm|pt|pc)?$/ig;
 												var numReg 		   = /^[0-9]+\.?([0-9])?$/;
@@ -825,7 +836,7 @@ You should have received a copy of the GNU General Public License along with thi
 												methods.restoreSelection.apply(this,[htmlTableCntr.html(),'html']);
 												else
 												document.execCommand('insertHTML', false, htmlTableCntr.html());
-												$("#InsertTable").modal("hide");
+												$("#InsertTable" + _idSuffix).modal("hide");
 												$(this).data("editor").focus();
 											}},
 
@@ -1008,16 +1019,15 @@ You should have received a copy of the GNU General Public License along with thi
 	       	var containerDiv = $("<div/>",{ class : "row-fluid Editor-container" });
 			var $this = $(this).hide();	       	
 	       	$this.after(containerDiv); 
-
-	       	var menuBar = $( "<div/>",{ id : "menuBarDiv",
-								  		class : "row-fluid"
+	       	var menuBar = $( "<div/>",{ id : "menuBarDiv_" + $(this).attr("id"),
+								  		class : "row-fluid line-control-menu-bar"
 							}).prependTo(containerDiv);
 	       	var editor  = $( "<div/>",{	class : "Editor-editor",
 										css : {overflow: "auto"},
 										contenteditable:"true"
 						 	}).appendTo(containerDiv);
-			var statusBar = $("<div/>", {	id : "statusbar",
-											class: "row-fluid",
+			var statusBar = $("<div/>", {	id : "statusbar_" + $(this).attr("id"),
+											class: "row-fluid line-control-status-bar",
 											unselectable:"on",
 							}).appendTo(containerDiv);
 	       	$(this).data("menuBar", menuBar);
@@ -1157,7 +1167,7 @@ You should have received a copy of the GNU General Public License along with thi
 					    }
 	       		}	       		
 				$("#imgAttribute").modal("hide");
-				$(this).data("editor").focus();
+				editorObj.data("editor").focus();
 			};
 			methods.createModal.apply(this,[cModalId,cModalHeader, imgModalBody, onSave]);
 			var modalTrigger = $('<a/>',{	href:"#"+cModalId,
@@ -1193,17 +1203,18 @@ You should have received a copy of the GNU General Public License along with thi
 		},
 
 		createTableContext: function(event,cMenuUl){
-			$('#editProperties').remove();
-			var modalId="editProperties";
+			var _idSuffix = "_" + editorObj.attr("id") + "_Edt";
+			var modalId="editProperties_" + editorObj.attr("id");
+			$("#" + modalId).remove();
        		var modalHeader="Table Properties";
        		var tblModalBody= methods.tableWidget.apply(this,["edit"]);
        		var onSave = function(){ 
-       			var tblWidthEdt			= $('#tblWidthEdt').val();
-       			var tblHeightEdt		= $('#tblHeightEdt').val();
-       			var tblBorderEdt		= $('#tblBorderEdt').val();
-       			var tblAlignEdt	        = $('#tblAlignEdt').val();
-       			var tblCellspacingEdt	= $('#tblCellspacingEdt').val();
-       			var tblCellpaddingEdt	= $('#tblCellpaddingEdt').val();
+       			var tblWidthEdt			= $('#tblWidth' + _idSuffix).val();
+       			var tblHeightEdt		= $('#tblHeight' + _idSuffix).val();
+       			var tblBorderEdt		= $('#tblBorder' + _idSuffix).val();
+       			var tblAlignEdt	        = $('#tblAlign' + _idSuffix).val();
+       			var tblCellspacingEdt	= $('#tblCellspacing' + _idSuffix).val();
+       			var tblCellpaddingEdt	= $('#tblCellpadding' + _idSuffix).val();
 				var tblEdtCssReg 		= /^auto$|^[+-]?[0-9]+\.?([0-9]+)?(px|em|ex|%|in|cm|mm|pt|pc)?$/ig;
 				var tblEdtNumReg 		= /^[0-9]+\.?([0-9])?$/;
 				if(tblWidthEdt!="" && !tblWidthEdt.match(tblEdtCssReg)){
@@ -1233,25 +1244,26 @@ You should have received a copy of the GNU General Public License along with thi
 			    $(event.target).closest('table').attr('border',tblBorderEdt);
 			    $(event.target).closest('table').attr('cellspacing',tblCellspacingEdt);
 			    $(event.target).closest('table').attr('cellpadding',tblCellpaddingEdt);
-			    $("#editProperties").modal("hide");
-				$(this).data("editor").focus();
+			    $("#" + modalId).modal("hide");
+				editorObj.data("editor").focus();
        		};
        		methods.createModal.apply(this,[modalId,modalHeader, tblModalBody, onSave]);
        		var modalTrigger = $('<a/>',{	href:"#"+modalId,
        										"text":"Table Properties",
 											"data-toggle":"modal"
-			}).click( function(e){ return function(){	
+			}).click( function(e){ return function(){
+					var _idSuffix = "_" + editorObj.attr("id") + "_Edt";
 			        $('#context-menu').remove();			
-					$('#tblRowsEdt').val($(e.target).closest('table').prop('rows').length);			
-				    $('#tblColumnsEdt').val($(e.target).closest('table').find('tr')[0].cells.length);
-				    $('#tblRowsEdt').attr('disabled','disabled');   
-				    $('#tblColumnsEdt').attr('disabled','disabled');
-				    $('#tblWidthEdt').val($(e.target).closest('table').get(0).style.width);
-				    $('#tblHeightEdt').val($(e.target).closest('table').get(0).style.height);
-				    $('#tblAlignEdt').val($(e.target).closest('table').attr("align"));
-				    $('#tblBorderEdt').val($(e.target).closest('table').attr("border"));
-				    $('#tblCellspacingEdt').val($(e.target).closest('table').attr("cellspacing"));
-				    $('#tblCellpaddingEdt').val($(e.target).closest('table').attr("cellpadding"));
+					$('#tblRows' + _idSuffix).val($(e.target).closest('table').prop('rows').length);			
+				    $('#tblColumns' + _idSuffix).val($(e.target).closest('table').find('tr')[0].cells.length);
+				    $('#tblRows' + _idSuffix).attr('disabled','disabled');   
+				    $('#tblColumns' + _idSuffix).attr('disabled','disabled');
+				    $('#tblWidth' + _idSuffix).val($(e.target).closest('table').get(0).style.width);
+				    $('#tblHeight' + _idSuffix).val($(e.target).closest('table').get(0).style.height);
+				    $('#tblAlign' + _idSuffix).val($(e.target).closest('table').attr("align"));
+				    $('#tblBorder' + _idSuffix).val($(e.target).closest('table').attr("border"));
+				    $('#tblCellspacing' + _idSuffix).val($(e.target).closest('table').attr("cellspacing"));
+				    $('#tblCellpadding' + _idSuffix).val($(e.target).closest('table').attr("cellpadding"));
 
 				    
 			}}(event));
