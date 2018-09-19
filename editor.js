@@ -1103,6 +1103,7 @@ You should have received a copy of the GNU General Public License along with thi
 	       		var cMenuUl = $('<ul/>',{ class:"dropdown-menu on","role":"menu"});
 	       		e.preventDefault();
 	       		if($(e.target).is('a')){
+				methods.createOpenLinkContext.apply(this,[e,cMenuUl]);
 	       			methods.createLinkContext.apply(this,[e,cMenuUl]);
 	       			cMenuUl.appendTo(cMenu);
 	       		    cMenu.appendTo('body');
@@ -1133,7 +1134,16 @@ You should have received a copy of the GNU General Public License along with thi
 			cMenuli.appendTo(cMenuUl);
 
 		},
-
+		createOpenLinkContext: function(event,cMenuUl){
+			var cMenulia = $('<li/>').append($('<a/>',{
+				id:"open_link",
+				"text":"OpenLink"
+			}).click(function(e){
+				return function(){
+				window.open(e.target.getAttribute('href'), '_blank');				
+			}}(event)));
+			cMenulia.appendTo(cMenuUl);
+		},
 		createImageContext: function(event,cMenuUl){
 			var cModalId="imgAttribute";
 			var cModalHeader="Image Attributes";
