@@ -1041,7 +1041,15 @@ You should have received a copy of the GNU General Public License along with thi
 					$(editor_Content).data("statusBar").html('<div class="label">'+'Words : '+wordCount+'</div>');
 					$(editor_Content).data("statusBar").append('<div class="label">'+'Characters : '+charCount+'</div>');
             	});
-	        }	        
+	        }
+		
+		editor.keypress ( function(e) {
+			
+			if ( e.which == 13 || e.which==10 ) {
+				methods.insertTextAtSelection.apply(this,['<br>','html']);	
+				
+			} 
+		});
 	       	
 	       	
 	       	for(var item in menuItems){
